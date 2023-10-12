@@ -10,7 +10,7 @@ export default function Post() {
       <div className="text">
         <h2>My Preparation Journey for Google Interviews</h2>
         <p className="info">
-          <a href="" className="author">
+          <a href="author name" className="author">
             Patrick
           </a>
           <time>Dec 24, 2020</time>
