@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function RegisterPage() {
   const [username, setUsename] = useState("");
   const [password, setPassword] = useState("");
-
+  const [regisSucc, setRegisSucc] = useState(false);
   async function register(ev) {
     ev.preventDefault();
     const response = await fetch("http://localhost:4000/register", {
@@ -15,8 +16,12 @@ export default function RegisterPage() {
     if (response.status !== 200) {
       alert("Resgistration failed.");
     } else {
+      setRegisSucc(true);
       alert("Resgistration successful");
     }
+  }
+  if (regisSucc) {
+    return <Navigate to={"/login"} />;
   }
   return (
     <form className="register" onSubmit={register}>

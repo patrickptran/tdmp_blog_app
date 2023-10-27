@@ -1,26 +1,33 @@
-export default function Post() {
+import { formatISO9075 } from "date-fns";
+import { Link } from "react-router-dom";
+
+export default function Post({
+  _id,
+  title,
+  summary,
+  content,
+  cover,
+  createdAt,
+  author,
+}) {
   return (
     <div className="post">
       <div className="image">
-        <img
-          src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*SuxLOmVaGixNpc7yQjQItQ.jpeg"
-          alt=""
-        />
+        <Link to={`/post/${_id}`}>
+          <img src={"http://localhost:4000/" + cover} alt="" />
+        </Link>
       </div>
       <div className="text">
-        <h2>My Preparation Journey for Google Interviews</h2>
+        <Link to={`/post/${_id}`}>
+          <h2>{title}</h2>
+        </Link>
         <p className="info">
           <a href="author name" className="author">
-            Patrick
+            {author.username}
           </a>
-          <time>Dec 24, 2020</time>
+          <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
-        <p className="summary">
-          Every Software Engineer aspires to create an impact with his/her
-          technical prowess. The Tech giants of this world are an amazing
-          workplace for techies to deliver experiences reaching billions of
-          users.
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
